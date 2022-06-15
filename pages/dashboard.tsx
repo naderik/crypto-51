@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Moralis from "moralis";
 import { useMoralis } from "react-moralis";
+import GiftMeEther from '../components/GiftMeEther';
 
 
 const Dashboard: NextPage = () => {
@@ -18,11 +19,7 @@ const Dashboard: NextPage = () => {
 
     return (
         <div className="h-screen w-screen flex flex-col items-center justify-center">
-            <button
-                className="px-7 py-4 mb-5 text-xl rounded-xl text-gray-900 bg-white hover:bg-gray-100"
-            >
-                Send 0.1 ETH to owner
-            </button>
+            <GiftMeEther />
             <button
                 onClick={logout}
                 className="px-7 py-4 text-xl rounded-xl text-gray-900 bg-white hover:bg-gray-100"
