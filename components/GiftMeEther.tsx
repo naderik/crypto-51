@@ -10,11 +10,13 @@ function GiftMeEther() {
     });
     return (
         <div className="h-screen w-screen flex flex-col items-center justify-center">
+            {/* <input className="form-input block w-full my-4" placeholder="How much do you want to gift me?" /> */}
+
             <button
                 onClick={() => fetch()} disabled={isFetching}
                 className="px-7 py-4 mb-5 text-xl rounded-xl text-gray-900 bg-white hover:bg-gray-100"
             >
-                Send ETH!
+                Gift me 0.5 ETH!
             </button>
             {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                 <strong className="font-bold">{error.name}</strong>
