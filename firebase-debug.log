@@ -1,0 +1,37 @@
+[debug] [2022-06-16T16:43:59.708Z] ----------------------------------------------------------------------
+[debug] [2022-06-16T16:43:59.710Z] Command:       /usr/local/bin/node /usr/local/bin/firebase emulators:start
+[debug] [2022-06-16T16:43:59.710Z] CLI Version:   11.1.0
+[debug] [2022-06-16T16:43:59.710Z] Platform:      darwin
+[debug] [2022-06-16T16:43:59.710Z] Node Version:  v16.15.1
+[debug] [2022-06-16T16:43:59.712Z] Time:          Thu Jun 16 2022 12:43:59 GMT-0400 (Eastern Daylight Saving Time)
+[debug] [2022-06-16T16:43:59.712Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-06-16T16:43:59.768Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-06-16T16:43:59.768Z] > authorizing via signed-in user (naderi.kasra@gmail.com)
+[info] i  emulators: Starting emulators: hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: hosting"}}
+[debug] [2022-06-16T16:43:59.824Z] [hub] writing locator at /var/folders/fb/h2lydzhn2wggcfn5tt1ln5yw0000gn/T/hub-crypto-51.json
+[debug] [2022-06-16T16:43:59.917Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/crypto-51/sites 
+[debug] [2022-06-16T16:44:00.370Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/crypto-51/sites 200
+[debug] [2022-06-16T16:44:00.370Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/crypto-51/sites {"sites":[{"name":"projects/crypto-51/sites/crypto-51","defaultUrl":"https://crypto-51.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2022-06-16T16:44:00.371Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/crypto-51/webApps/-/config [none]
+[debug] [2022-06-16T16:44:00.778Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/crypto-51/webApps/-/config 200
+[debug] [2022-06-16T16:44:00.778Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/crypto-51/webApps/-/config {"projectId":"crypto-51","storageBucket":"crypto-51.appspot.com","apiKey":"AIzaSyBUfWe0TKg_-eA2ZqWZ3S-ygjPsJXDdwgk","authDomain":"crypto-51.firebaseapp.com","messagingSenderId":"894135080125"}
+[info] i  hosting: Serving hosting files from: out {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mout\u001b[22m"}}
+[info] ✔  hosting: Local server: http://localhost:3535 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:3535\u001b[22m\u001b[24m"}}
+[warn] ⚠  emulators: The Emulator UI requires a project ID to start. Configure your default project with 'firebase use' or pass the --project flag. {"metadata":{"emulator":{"name":"hub"},"message":"The Emulator UI requires a project ID to start. Configure your default project with 'firebase use' or pass the --project flag."}}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+└─────────────────────────────────────────────────────────────┘
+
+┌──────────┬────────────────┐
+│ Emulator │ Host:Port      │
+├──────────┼────────────────┤
+│ Hosting  │ localhost:3535 │
+└──────────┴────────────────┘
+  Emulator Hub running at localhost:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[info] i  hosting: 127.0.0.1 - - [16/Jun/2022:16:44:08 +0000] "GET / HTTP/1.1" 404 139 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Jun/2022:16:44:08 +0000] \"GET / HTTP/1.1\" 404 139 \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36\""}}
