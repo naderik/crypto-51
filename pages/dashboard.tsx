@@ -5,7 +5,11 @@ import Moralis from "moralis";
 import { useMoralis } from "react-moralis";
 import GiftMeEther from '../components/GiftMeEther';
 
-
+/**
+ * 
+ * Dashboard page.
+ * 
+ */
 const Dashboard: NextPage = () => {
 
 
