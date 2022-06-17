@@ -18,6 +18,11 @@ function Wallet() {
                 <p className="text-gray-700 text-base">
                     Wallet Balance: 0.368 ETH
                 </p>
+                <button
+                    onClick={() => navigator.clipboard.writeText(address.toString())}
+                >
+                    Copy
+                </button>
             </div>
             <button
                 onClick={logout}
