@@ -1,12 +1,20 @@
 import GiftMeEther from './GiftMeEther'
 import { useMoralis } from "react-moralis";
+import { useEffect, useState } from "react";
 
 function Wallet() {
-    const { logout } = useMoralis();
+    const { user, isAuthenticated, logout } = useMoralis();
+    const [address, setAddress] = useState();
+    useEffect(() => {
+        if (isAuthenticated && user) {
+            setAddress(user.attributes.ethAddress);
+        }
+    }, [isAuthenticated, user]);
+    console.log(address);
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg">
             <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">Wallet Address: 0x0000000000000000000</div>
+                <div className="font-bold text-xl mb-2">Wallet Address: {address}</div>
                 <p className="text-gray-700 text-base">
                     Wallet Balance: 0.368 ETH
                 </p>
