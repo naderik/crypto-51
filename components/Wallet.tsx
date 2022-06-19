@@ -1,22 +1,36 @@
-import GiftMeEther from './GiftMeEther'
-import { useMoralis } from "react-moralis";
+import * as React from 'react'
+import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import { useEffect, useState } from "react";
+import { IUser } from '../types';
+import MoralisType from "moralis";
 
-function Wallet() {
+
+const Wallet: React.FC<MoralisType.User> = (props) => {
     const { user, isAuthenticated, logout } = useMoralis();
     const [address, setAddress] = useState();
+    const [balance, setBalance] = useState();
+    const Web3Api = useMoralisWeb3Api();
+
     useEffect(() => {
         if (isAuthenticated && user) {
             setAddress(user.attributes.ethAddress);
+            fetchNativeBalance();
         }
     }, [isAuthenticated, user]);
-    console.log(address);
+
+    const fetchNativeBalance = async () => {
+        if (address) {
+            const balance = await Web3Api.account.getNativeBalance(address);
+            setBalance(balance);
+        }
+    }
+
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg">
             <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">Wallet Address: {address}</div>
                 <p className="text-gray-700 text-base">
-                    Wallet Balance: 0.368 ETH
+                    Wallet Balance: {balance} ETH
                 </p>
                 <button
                     onClick={() => navigator.clipboard.writeText(address.toString())}
@@ -30,7 +44,7 @@ function Wallet() {
             >
                 Logout
             </button>
-            <GiftMeEther />
+            {/* <GiftMeEther /> */}
         </div>
     )
 }

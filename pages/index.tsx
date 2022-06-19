@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import MetaMaskLogin from '../components/MetaMaskLogin'
-import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   return (
