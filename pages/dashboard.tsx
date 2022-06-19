@@ -1,13 +1,13 @@
 import type { NextPage } from 'next'
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import Moralis from "moralis";
+import MoralisType from "moralis";
 import { useMoralis } from "react-moralis";
 import Wallet from '../components/Wallet';
 
 
 const Dashboard: NextPage = () => {
-    const { isAuthenticated } = useMoralis();
+    const { isAuthenticated, user } = useMoralis();
     const router = useRouter();
 
     useEffect(() => {
@@ -17,7 +17,7 @@ const Dashboard: NextPage = () => {
 
     return (
         <div className="h-screen w-screen flex flex-col items-center justify-center">
-            <Wallet />
+            <Wallet props={user} />
         </div>
     );
 }
