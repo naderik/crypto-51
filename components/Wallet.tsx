@@ -3,6 +3,7 @@ import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import { useEffect, useState } from "react";
 import { IUser } from '../types';
 import MoralisType from "moralis";
+import { VscCopy } from 'react-icons/vsc';
 
 type Props = {
     user: MoralisType.User;
@@ -12,6 +13,7 @@ const Wallet: NextComponentType<Props> = ({ user }) => {
     const { isAuthenticated, logout } = useMoralis();
     const [address, setAddress] = useState<any>();
     const [balance, setBalance] = useState<any>();
+    const [showAddressCopied, setShowAddressCopied] = useState<boolean>(false);
     const Web3Api = useMoralisWeb3Api();
 
     useEffect(() => {
@@ -20,6 +22,15 @@ const Wallet: NextComponentType<Props> = ({ user }) => {
             fetchNativeBalance();
         }
     }, [isAuthenticated]);
+
+    const handleCopyAddress = () => {
+        navigator.clipboard.writeText(address);
+        setShowAddressCopied(true);
+        setTimeout(() => {
+            setShowAddressCopied(false);
+        }
+            , 3000);
+    }
 
     const fetchNativeBalance = async () => {
         if (address) {
@@ -31,15 +42,33 @@ const Wallet: NextComponentType<Props> = ({ user }) => {
 
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg">
+            {showAddressCopied ? (
+                <div
+                    className="text-white px-6 py-4 border-0 rounded relative mb-4 bg-emerald-500"
+                >
+                    <span className="text-xl inline-block mr-5 align-middle">
+                        <i className="fas fa-bell" />
+                    </span>
+                    <span className="inline-block align-middle mr-8">
+                        <b className="capitalize">Address Copied to Clipboard!</b>
+                    </span>
+                    <button
+                        className="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
+                        onClick={() => setShowAddressCopied(false)}
+                    >
+                        <span></span>
+                    </button>
+                </div>
+            ) : null}
             <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">Wallet Address: {address}</div>
                 <p className="text-gray-700 text-base">
                     Wallet Balance: {balance} ETH
                 </p>
                 <button
-                    onClick={() => navigator.clipboard.writeText(address?.toString())}
+                    onClick={() => handleCopyAddress()}
                 >
-                    Copy
+                    <VscCopy />
                 </button>
             </div>
             <button
