@@ -68,7 +68,7 @@ const Wallet: NextComponentType<Props> = ({ user }) => {
                 <button
                     onClick={() => handleCopyAddress()}
                 >
-                    <VscCopy />
+                    <VscCopy size='2rem' />
                 </button>
             </div>
             <button
