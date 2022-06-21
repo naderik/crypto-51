@@ -40,6 +40,9 @@ const Wallet: NextComponentType<Props> = ({ user }) => {
         }
     }
 
+    // mutate the address to show only the first 6 and last 4 characters and replace the rest with dots
+    const addressToShow = address ? address.substring(0, 6) + '...' + address.substring(address.length - 4) : '';
+
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg">
             {showAddressCopied ? (
@@ -61,7 +64,7 @@ const Wallet: NextComponentType<Props> = ({ user }) => {
                 </div>
             ) : null}
             <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">Wallet Address: {address}</div>
+                <div className="font-bold text-xl mb-2">Wallet Address: {addressToShow}</div>
                 <p className="text-gray-700 text-base">
                     Wallet Balance: {balance} ETH
                 </p>
