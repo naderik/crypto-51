@@ -10,8 +10,8 @@ type Props = {
 
 const Wallet: NextComponentType<Props> = ({ user }) => {
     const { isAuthenticated, logout } = useMoralis();
-    const [address, setAddress] = useState<any[]>([]);
-    const [balance, setBalance] = useState<any[]>([]);
+    const [address, setAddress] = useState<any>();
+    const [balance, setBalance] = useState<any>();
     const Web3Api = useMoralisWeb3Api();
 
     useEffect(() => {
