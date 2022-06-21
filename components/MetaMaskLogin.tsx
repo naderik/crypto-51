@@ -6,7 +6,7 @@ import { useMoralis } from "react-moralis";
 
 function MetaMaskLogin() {
     const { isAuthenticated, authenticate, authError } = useMoralis();
-    const [showAlert, setShowAlert] = useState(false);
+    const [showAlert, setShowAlert] = useState<boolean>(false);
     const router = useRouter();
 
     useEffect(() => {
