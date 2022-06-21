@@ -63,23 +63,25 @@ const Wallet: NextComponentType<Props> = ({ user }) => {
                     </button>
                 </div>
             ) : null}
+
             <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">Wallet Address: {addressToShow}</div>
-                <p className="text-gray-700 text-base">
-                    Wallet Balance: {balance} ETH
-                </p>
-                <button
+                <div className="font-bold text-xl mb-2">Address: {addressToShow}</div>
+                <button className="px-4 py-4 rounded-xl text-gray-900 bg-white hover:bg-gray-100"
                     onClick={() => handleCopyAddress()}
                 >
                     <VscCopy size='2rem' />
                 </button>
+                <p className="text-gray-700 text-base">
+                    Wallet Balance: {balance} ETH
+                </p>
+                <button
+                    onClick={logout}
+                    className="px-7 py-4 mx-4 my-4 text-xl rounded-xl text-gray-900 bg-white hover:bg-gray-100"
+                >
+                    Logout
+                </button>
             </div>
-            <button
-                onClick={logout}
-                className="px-7 py-4 text-xl rounded-xl text-gray-900 bg-white hover:bg-gray-100"
-            >
-                Logout
-            </button>
+
             {/* <GiftMeEther /> */}
         </div>
     )
