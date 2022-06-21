@@ -1,14 +1,17 @@
-import * as React from 'react'
+import { NextComponentType } from 'next'
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import { useEffect, useState } from "react";
 import { IUser } from '../types';
 import MoralisType from "moralis";
 
+type Props = {
+    user: MoralisType.User;
+}
 
-const Wallet: React.FC<MoralisType.User> = (props) => {
-    const { user, isAuthenticated, logout } = useMoralis();
-    const [address, setAddress] = useState();
-    const [balance, setBalance] = useState();
+const Wallet: NextComponentType<Props> = ({ user }) => {
+    const { isAuthenticated, logout } = useMoralis();
+    const [address, setAddress] = useState<any[]>([]);
+    const [balance, setBalance] = useState<any[]>([]);
     const Web3Api = useMoralisWeb3Api();
 
     useEffect(() => {
@@ -16,12 +19,13 @@ const Wallet: React.FC<MoralisType.User> = (props) => {
             setAddress(user.attributes.ethAddress);
             fetchNativeBalance();
         }
-    }, [isAuthenticated, user]);
+    }, [isAuthenticated]);
 
     const fetchNativeBalance = async () => {
         if (address) {
-            const balance = await Web3Api.account.getNativeBalance(address);
+            const balance = await Web3Api.account.getNativeBalance();
             setBalance(balance);
+            console.log(`Balance: ${balance}`);
         }
     }
 
@@ -33,7 +37,7 @@ const Wallet: React.FC<MoralisType.User> = (props) => {
                     Wallet Balance: {balance} ETH
                 </p>
                 <button
-                    onClick={() => navigator.clipboard.writeText(address.toString())}
+                    onClick={() => navigator.clipboard.writeText(address?.toString())}
                 >
                     Copy
                 </button>
@@ -48,5 +52,4 @@ const Wallet: React.FC<MoralisType.User> = (props) => {
         </div>
     )
 }
-
 export default Wallet
