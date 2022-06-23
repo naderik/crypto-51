@@ -1,7 +1,6 @@
 import { NextComponentType } from 'next'
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import { useEffect, useState } from "react";
-import { IUser } from '../types';
 import MoralisType from "moralis";
 import { VscCopy } from 'react-icons/vsc';
 
@@ -9,19 +8,29 @@ type Props = {
     user: MoralisType.User;
 }
 
-const Wallet: NextComponentType<Props> = ({ user }) => {
-    const { isAuthenticated, logout } = useMoralis();
+const Wallet: NextComponentType<Props> = () => {
+    const { isAuthenticated, logout, user } = useMoralis();
     const [address, setAddress] = useState<any>();
-    const [balance, setBalance] = useState<any>();
+    const [balance, setBalance] = useState<string>();
     const [showAddressCopied, setShowAddressCopied] = useState<boolean>(false);
     const Web3Api = useMoralisWeb3Api();
+
+
 
     useEffect(() => {
         if (isAuthenticated && user) {
             setAddress(user.attributes.ethAddress);
+            const fetchNativeBalance = async () => {
+                    const options = {
+                        address: address,
+                    }
+                    const balanceFromAccount = await Web3Api.account.getNativeBalance(options);
+                    setBalance(balanceFromAccount.balance);
+            }
             fetchNativeBalance();
         }
-    }, [isAuthenticated]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isAuthenticated, user]);
 
     const handleCopyAddress = () => {
         navigator.clipboard.writeText(address);
@@ -32,16 +41,10 @@ const Wallet: NextComponentType<Props> = ({ user }) => {
             , 3000);
     }
 
-    const fetchNativeBalance = async () => {
-        if (address) {
-            const balance = await Web3Api.account.getNativeBalance();
-            setBalance(balance);
-            console.log(`Balance: ${balance}`);
-        }
-    }
-
     // mutate the address to show only the first 6 and last 4 characters and replace the rest with dots
     const addressToShow = address ? address.substring(0, 6) + '...' + address.substring(address.length - 4) : '';
+
+    console.log(`Balance: ${balance}`);
 
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg">
@@ -65,7 +68,7 @@ const Wallet: NextComponentType<Props> = ({ user }) => {
             ) : null}
 
             <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">Address: {addressToShow}</div>
+                <div className="font-bold text-xl mb-2">Wallet Address: {addressToShow}</div>
                 <button className="px-4 py-4 rounded-xl text-gray-900 bg-white hover:bg-gray-100"
                     onClick={() => handleCopyAddress()}
                 >
@@ -81,8 +84,6 @@ const Wallet: NextComponentType<Props> = ({ user }) => {
                     Logout
                 </button>
             </div>
-
-            {/* <GiftMeEther /> */}
         </div>
     )
 }
