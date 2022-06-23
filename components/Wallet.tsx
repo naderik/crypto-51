@@ -41,13 +41,13 @@ const Wallet: NextComponentType<Props> = () => {
             , 3000);
     }
 
-    // mutate the address to show only the first 6 and last 4 characters and replace the rest with dots
-    const addressToShow = address ? address.substring(0, 6) + '...' + address.substring(address.length - 4) : '';
+    // mutate the address to show only the first 6 and last 5 characters and replace the rest with dots
+    const addressToShow = address ? address.substring(0, 6) + '...' + address.substring(address.length - 5) : '';
 
     console.log(`Balance: ${balance}`);
 
     return (
-            <div className="flex flex-wrap justify-center items-center rounded shadow-2xl">
+        <div className="px-4 py-4 flex-auto rounded shadow-2xl">
             {showAddressCopied ? (
                 <div
                     className="text-white px-6 py-4 border-0 rounded relative mb-4 bg-emerald-500"
@@ -67,23 +67,27 @@ const Wallet: NextComponentType<Props> = () => {
                 </div>
             ) : null}
 
-            <div className="px-6 py-6 justify-self-auto">
-                <span className="font-bold text-xl justify-self-auto">Wallet Address: {addressToShow}</span>
+            <div className="first-letter:px-4 py-4 mx-4 my-4 flex-auto">
                 <button className="px-4 py-4 rounded-xl text-gray-900 bg-white hover:bg-gray-100"
                     onClick={() => handleCopyAddress()}
                 >
-                    <VscCopy size='2rem' />
+                    <span className="px-4 py-4 font-bold text-2xl flex flex-row">
+                        Wallet Address: {addressToShow}
+                        <VscCopy className="mx-4" size='2rem' />
+                    </span>
                 </button>
+            </div>
+            <div className="px-4 py-4 flex-auto">
                 <span className="text-gray-900 text-base">
                     Wallet Balance: {balance} ETH
                 </span>
-                <button
-                    onClick={logout}
-                    className="px-7 py-4 mx-4 my-4 text-xl rounded-xl text-gray-900 bg-white hover:bg-gray-100"
-                >
-                    Logout
-                </button>
             </div>
+            <button
+                onClick={logout}
+                className="px-4 py-4 mx-4 my-4 font-bold text-2xl rounded-xl text-gray-900 bg-white hover:bg-gray-100"
+            >
+                Logout
+            </button>
         </div>
     )
 }
