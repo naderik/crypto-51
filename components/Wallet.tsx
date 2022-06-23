@@ -47,7 +47,7 @@ const Wallet: NextComponentType<Props> = () => {
     console.log(`Balance: ${balance}`);
 
     return (
-        <div className="rounded overflow-hidden shadow-lg">
+            <div className="flex flex-wrap justify-center items-center rounded shadow-2xl">
             {showAddressCopied ? (
                 <div
                     className="text-white px-6 py-4 border-0 rounded relative mb-4 bg-emerald-500"
@@ -67,8 +67,8 @@ const Wallet: NextComponentType<Props> = () => {
                 </div>
             ) : null}
 
-            <div className="px-6 py-6">
-                <div className="font-bold text-xl justify-center items-center">Wallet Address: {addressToShow}</div>
+            <div className="px-6 py-6 justify-self-auto">
+                <span className="font-bold text-xl justify-self-auto">Wallet Address: {addressToShow}</span>
                 <button className="px-4 py-4 rounded-xl text-gray-900 bg-white hover:bg-gray-100"
                     onClick={() => handleCopyAddress()}
                 >
