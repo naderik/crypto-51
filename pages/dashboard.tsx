@@ -16,7 +16,7 @@ const Dashboard: NextPage = () => {
 
 
     return (
-        <div className="h-screen w-screen flex flex-col items-center justify-center">
+        <div className="h-screen w-screen flex flex-wrap items-center justify-center">
             <Wallet />
         </div>
     );
