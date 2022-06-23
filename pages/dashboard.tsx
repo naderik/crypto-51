@@ -7,7 +7,7 @@ import Wallet from '../components/Wallet';
 
 
 const Dashboard: NextPage = () => {
-    const { isAuthenticated, user } = useMoralis();
+    const { isAuthenticated } = useMoralis();
     const router = useRouter();
 
     useEffect(() => {
@@ -17,7 +17,7 @@ const Dashboard: NextPage = () => {
 
     return (
         <div className="h-screen w-screen flex flex-col items-center justify-center">
-            <Wallet user={user} />
+            <Wallet />
         </div>
     );
 }
