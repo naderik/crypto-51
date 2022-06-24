@@ -7,7 +7,7 @@ const Home: NextPage = () => {
     <div className="antialiased flex justify-center m-4" >
       <Head>
         <title>Crypto-51</title>
-        <meta name="description" content="A web3 utility tool!" />
+        <meta name="Crypto-51 home" content="A web3 utility tool!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MetaMaskLogin />

@@ -45,7 +45,6 @@ const Wallet: NextComponentType<Props> = () => {
     // mutate the address to show only the first 6 and last 5 characters and replace the rest with dots
     const addressToShow = address ? address.substring(0, 6) + '...' + address.substring(address.length - 5) : '';
 
-    console.log(`Balance: ${balance}`);
 
     return (
         <div className="px-4 py-4 flex-auto rounded shadow-2xl">
